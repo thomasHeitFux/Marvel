@@ -1,20 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { View, Text, FlatList } from 'react-native';
+import Home from './components/Home'
+import Detail from './components/Detail';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import Favorites from './components/Favorites';
+import { Provider } from 'react-redux';
+import { Store } from './Redux/store';
 
-export default function App() {
+const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
+
+
+function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+       <Drawer.Navigator
+      initialRouteName="Home">
+       <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen name="Favorites" component={Favorites} />
+     </Drawer.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+export default function App() {
+  return (
+ <Provider store={Store}>
+      <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="HomeScreen" component={HomeScreen} options={{
+          headerShown: false}} /> 
+        <Stack.Screen name="Detail" component={Detail}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+ </Provider>
+  );
+};
