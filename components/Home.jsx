@@ -5,6 +5,7 @@ import { Searchbar } from 'react-native-paper';
 import { getCharacters, loadMore } from '../Redux/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Alert } from 'react-native-web';
+import theme from '../config/config';
 
 export default function Home() {
 
@@ -46,8 +47,8 @@ export default function Home() {
   }
 
   return (
-    <SafeAreaView >
-      <Searchbar
+    <SafeAreaView style={{backgroundColor:theme.dark.background, color:theme.dark.color}}>
+      <Searchbar style={{backgroundColor:theme.dark.background, color:theme.dark.color}}
         placeholder="Search for character..."
         onChangeText={value => setSearch(value)}
         value={search}
@@ -57,8 +58,8 @@ export default function Home() {
       {isLoading
         ? (<ActivityIndicator size="large" color="#0000ff" style={{ justifyContent: 'center', alignItems: 'center' }} />)
         : (
-          <View>
-            <FlatList
+          <View >
+            <FlatList 
               data={characters}
               keyExtractor={({ id }) => id.toString()}
               refreshing={isLoading}

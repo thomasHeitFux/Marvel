@@ -7,7 +7,7 @@
     "icon": "./assets/marvelico.jpg",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/matvel.jpg",
+      "image": "./assets/marvel.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -24,7 +24,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.thomasfux.marvelApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"

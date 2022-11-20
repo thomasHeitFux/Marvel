@@ -8,32 +8,37 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import Favorites from './components/Favorites';
 import { Provider } from 'react-redux';
 import { Store } from './Redux/store';
-
+import themeContext from './config/themeContext';
+import theme from './config/config';
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 
 function HomeScreen() {
   return (
-       <Drawer.Navigator
+    <Drawer.Navigator
       initialRouteName="Home">
-       <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="Favorites" component={Favorites} />
-     </Drawer.Navigator>
+    </Drawer.Navigator>
   );
 }
 
 
 export default function App() {
   return (
- <Provider store={Store}>
-      <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="HomeScreen" component={HomeScreen} options={{
-          headerShown: false}} /> 
-        <Stack.Screen name="Detail" component={Detail}/>
-      </Stack.Navigator>
-    </NavigationContainer>
- </Provider>
+    <themeContext.Provider value={theme.dark}>
+
+      <Provider store={Store}>
+        <NavigationContainer >
+          <Stack.Navigator >
+            <Stack.Screen name="HomeScreen" component={HomeScreen} options={{
+              headerShown: false
+            }} />
+            <Stack.Screen name="Detail" component={Detail} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
+    </themeContext.Provider>
   );
 };
